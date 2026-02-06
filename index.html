@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Quiz</title>
+<title>Rose Day</title>
 
 <style>
 * {
@@ -14,27 +14,148 @@
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  background: linear-gradient(135deg, #f8a5c0 0%, #fecdd3 50%, #fff0f6 100%);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* COUNTDOWN SCREEN - Rose Day theme */
+.countdown-screen {
+  background: linear-gradient(135deg, #fff0f6 0%, #ffd6e0 50%, #fecdd3 100%);
+  color: #6b1220;
+  width: 90%;
+  max-width: 420px;
+  padding: 36px 28px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(107,18,32,0.12);
+  border: 1px solid rgba(107,18,32,0.08);
+}
+
+.countdown-number {
+  font-size: 64px;
+  font-weight: 800;
+  margin: 6px 0;
+  color: #9f1239;
+  letter-spacing: -1px;
+}
+
+.countdown-sub {
+  font-size: 15px;
+  opacity: 0.95;
+  color: #5b0820;
+}
+
+.countdown-screen:before {
+  content: "🌹";
+  display: block;
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+/* CELEBRATION SCREEN */
+.celebrate-screen {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+  background: radial-gradient(rgba(255,240,245,0.2), rgba(255,240,245,0.05));
+}
+
+.celebrate-card {
+  background: linear-gradient(135deg,#fff0f6 0%, #ffe4ec 60%);
+  color: #6b1220;
+  padding: 36px 32px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 40px 80px rgba(107,18,32,0.16);
+  border: 1px solid rgba(107,18,32,0.08);
+  transform: translateY(0) scale(1);
+  animation: celebratePop 420ms cubic-bezier(.2,.9,.3,1);
+}
+
+@keyframes celebratePop {
+  0% { transform: translateY(8px) scale(0.92); opacity: 0; }
+  60% { transform: translateY(-6px) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Message animation: pop + subtle glow */
+.celebrate-message {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #8b1233;
+  background: linear-gradient(90deg,#ff6fa3,#c81e5b 60%,#9f1239);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 6px 18px rgba(155,20,50,0.10);
+  animation: messagePop 720ms cubic-bezier(.2,.9,.3,1), messageGlow 1.4s ease-in-out 720ms infinite alternate;
+}
+
+@keyframes messagePop {
+  0% { transform: scale(0.86) translateY(6px); opacity: 0; }
+  60% { transform: scale(1.06) translateY(-4px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes messageGlow {
+  0% { text-shadow: 0 6px 18px rgba(155,20,50,0.06), 0 0 0 rgba(255,255,255,0); filter: saturate(1); }
+  100% { text-shadow: 0 10px 28px rgba(155,20,50,0.18), 0 0 12px rgba(255,182,193,0.18); filter: saturate(1.08) contrast(1.02); }
+}
+
+.celebrate-message {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #8b1233;
+}
+
+.flowers {
+  position: relative;
+  width: 280px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.flower {
+  position: absolute;
+  bottom: 0;
+  font-size: 30px;
+  opacity: 0;
+  transform: translateY(0) scale(0.8) rotate(0deg);
+  animation: floatUp var(--dur,3s) cubic-bezier(.2,.9,.3,1) forwards;
+}
+
+@keyframes floatUp {
+  0% { opacity: 0; transform: translateY(0) scale(0.7) rotate(0deg); }
+  20% { opacity: 1; transform: translateY(-18px) scale(1) rotate(12deg); }
+  50% { transform: translateY(-90px) scale(1.08) rotate(-18deg); }
+  100% { opacity: 0; transform: translateY(-180px) scale(1) rotate(28deg); }
+}
+
 /* CARD */
 .quiz-card {
-  background: #ffffff;
+  background: linear-gradient(135deg, #fff0f6 0%, #ffe4ec 100%);
   width: 90%;
   max-width: 420px;
   padding: 25px;
   border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  box-shadow: 0 20px 40px rgba(107,18,32,0.12);
   text-align: center;
   position: relative;
+  border: 1px solid rgba(107,18,32,0.08);
 }
 
 /* SCORE */
 .score {
-  background: #e5e7eb;
+  background: linear-gradient(90deg, #ffd6e0, #ffccd5);
+  color: #6b1220;
   padding: 8px;
   border-radius: 10px;
   font-weight: 600;
@@ -46,6 +167,7 @@ body {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 20px;
+  color: #6b1220;
 }
 
 /* BUTTONS */
@@ -54,10 +176,22 @@ body {
   padding: 14px;
   margin-bottom: 12px;
   border-radius: 12px;
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
   font-size: 15px;
-  background: #f3f4f6;
+  background: linear-gradient(90deg, #fff5f7, #ffecf0);
+  color: #6b1220;
+  font-weight: 600;
+  transition: all 200ms ease;
+}
+
+.option:hover {
+  background: linear-gradient(90deg, #ffd6e0, #ffc6d3);
+  border-color: #e83e5c;
+}
+
+.option:active {
+  transform: scale(0.98);
 }
 
 /* Valentine buttons same width */
@@ -66,12 +200,6 @@ body {
   max-width: 220px;
   margin-left: auto;
   margin-right: auto;
-}
-
-/* NO button */
-.no-btn {
-  width: 220px;
-  max-width: 220px;
 }
 
 /* SYSTEM MESSAGE */
@@ -143,8 +271,20 @@ body {
 
 <body>
 
-<div class="quiz-card">
-  <div class="score" id="score">Score: 0 / 4</div>
+<div id="countdownScreen" class="countdown-screen">
+  <div class="countdown-number" id="countdownNumber">5</div>
+  <div class="countdown-sub">Get ready — Rose Day begins soon</div>
+</div>
+
+<div id="celebrateScreen" class="celebrate-screen">
+  <div class="celebrate-card">
+    <div class="celebrate-message">Happy Rose my dear love</div>
+    <div class="flowers" id="flowers"></div>
+  </div>
+</div>
+
+<div class="quiz-card" id="quizCard" style="display:none;">
+  <div class="score" id="score"></div>
   <div class="question" id="question"></div>
   <div id="options"></div>
 
@@ -156,30 +296,36 @@ body {
 
 <script>
 /* 🍫 CHANGE YOUR CHOCOLATE LINK HERE */
-const CHOCOLATE_LINK = "https://www.amazon.in/s?k=chocolate+gift";
+const CHOCOLATE_LINK = "";
+
+/* TARGET DATETIME - set an ISO datetime string for when the quiz should start.
+  Example: "2026-02-14T00:00:00" (UTC/Local depends on user's browser)
+  Change this value to set the target date/time. */
+const TARGET_DATETIME = "2026-02-07T10:00:00";
 
 const questions = [
   {
-    q: "When did I first fall for you?",
-    options: ["I don’t remember", "Jan 28", "Last year"],
-    answer: 1
-  },
-  {
-    q: "Who said I love you first?",
-    options: ["Me", "You"],
-    answer: 0
-  },
-  {
-    q: "What do I love most about you?",
-    options: ["Your smile", "Your heart", "Everything"],
-    answer: 2
-  },
-  {
-    q: "Will you be my Valentine?",
-    options: ["Yes ❤️", "No 💔"],
-    answer: 0,
+    q: "When did we first see each other?",
+    options: ["I don’t remember", "Jul 2", "Jul 5", "Jul 7"],
+    answer: 1,
     special: true
   }
+  // {
+  //   q: "Who said I love you first?",
+  //   options: ["Me", "You"],
+  //   answer: 0
+  // },
+  // {
+  //   q: "What do I love most about you?",
+  //   options: ["Your smile", "Your heart", "Everything"],
+  //   answer: 2
+  // },
+  // {
+  //   q: "Will you be my Valentine?",
+  //   options: ["Yes ❤️", "No 💔"],
+  //   answer: 0,
+  //   special: true
+  // }
 ];
 
 let current = 0;
@@ -191,7 +337,123 @@ const optionsEl = document.getElementById("options");
 const scoreEl = document.getElementById("score");
 const systemMsg = document.getElementById("systemMsg");
 
-loadQuestion();
+const countdownScreenEl = document.getElementById('countdownScreen');
+const countdownNumberEl = document.getElementById('countdownNumber');
+
+// start countdown on load (will call loadQuestion when finished)
+startCountdown();
+
+function startCountdown() {
+  const subEl = document.querySelector('.countdown-sub');
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  // try parsing target; if string is local ISO without timezone some browsers may treat differently
+  let target = new Date(TARGET_DATETIME);
+  if (isNaN(target)) {
+    // try forcing as UTC
+    const alt = TARGET_DATETIME + 'Z';
+    target = new Date(alt);
+  }
+
+  if (isNaN(target)) {
+    countdownNumberEl.innerText = "--:--:--";
+    if (subEl) subEl.innerText = 'Invalid target date — check TARGET_DATETIME';
+    setTimeout(() => {
+      countdownScreenEl.style.display = 'none';
+      document.getElementById('quizCard').style.display = '';
+      loadQuestion();
+    }, 1200);
+    return;
+  }
+
+  // ensure initial visible state
+  countdownNumberEl.innerText = '0d 00:00:00';
+  if (subEl) subEl.innerText = `Starts on ${target.toLocaleString()}`;
+
+  let timer = null;
+
+  // check if target is already in the past -- if so, skip to celebration and quiz
+  const now = new Date();
+  const immediateCheck = target - now;
+  if (immediateCheck <= 0) {
+    // target time has passed, go directly to celebration
+    setTimeout(endCountdown, 100);
+    return;
+  }
+  function update() {
+    try {
+      const now = new Date();
+      let diff = target - now;
+      if (diff <= 0) {
+        endCountdown();
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= days * (1000 * 60 * 60 * 24);
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      diff -= hours * (1000 * 60 * 60);
+      const minutes = Math.floor(diff / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      countdownNumberEl.innerText = `${days}d ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+      if (subEl) subEl.innerText = `Starts on ${target.toLocaleString()}`;
+    } catch (err) {
+      // if anything goes wrong, stop the timer and show the quiz after short fallback
+      clearInterval(timer);
+      countdownNumberEl.innerText = '--:--:--';
+      if (subEl) subEl.innerText = 'Error running countdown';
+      setTimeout(() => {
+        countdownScreenEl.style.display = 'none';
+        document.getElementById('quizCard').style.display = '';
+        loadQuestion();
+      }, 1200);
+    }
+  }
+
+  update();
+  timer = setInterval(update, 1000);
+
+  function endCountdown() {
+    if (timer) clearInterval(timer);
+    // show celebration for 5 seconds, then reveal quiz
+    countdownScreenEl.style.display = 'none';
+    const celebrate = document.getElementById('celebrateScreen');
+    const flowers = document.getElementById('flowers');
+    if (!celebrate || !flowers) {
+      document.getElementById('quizCard').style.display = '';
+      loadQuestion();
+      return;
+    }
+    celebrate.style.display = 'flex';
+    // generate many rose/petal emojis with staggered animation delays and varied durations
+    flowers.innerHTML = '';
+    const emojis = ['🌹','🌸','🌺','🌷','💐','🌼','🌻'];
+    const count = 24;
+    for (let i = 0; i < count; i++) {
+      const f = document.createElement('div');
+      f.className = 'flower';
+      f.style.left = (5 + Math.random()*90) + '%';
+      f.style.bottom = (Math.random()*10) + 'px';
+      const dur = (1.2 + Math.random()*1.6).toFixed(2);
+      f.style.setProperty('--dur', dur + 's');
+      f.style.animationDelay = (Math.random()*0.9) + 's';
+      f.style.fontSize = (20 + Math.random()*36) + 'px';
+      f.style.opacity = 0;
+      f.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+      flowers.appendChild(f);
+    }
+
+    // add a burst of confetti for extra drama
+    launchConfetti();
+
+    setTimeout(() => {
+      celebrate.style.display = 'none';
+      document.getElementById('quizCard').style.display = '';
+      loadQuestion();
+    }, 5000);
+  }
+}
 
 /* FEEDBACK (DYNAMIC) */
 function showFeedback(content) {
@@ -230,35 +492,12 @@ function loadQuestion() {
     btn.className = "option";
     btn.innerText = opt;
 
-    /* NO BUTTON */
+    /* NO BUTTON - show error message instead of floating away */
     if (q.special && i !== q.answer) {
-      btn.classList.add("no-btn");
-
       btn.onclick = () => {
         systemMsg.style.display = "block";
-        btn.style.display = "none";
-
-        setTimeout(() => {
-          let x, y;
-
-          if (noClickCount === 0) {
-            btn.style.position = "absolute";
-            const card = document.querySelector(".quiz-card");
-            x = Math.random() * (card.clientWidth - btn.offsetWidth - 20);
-            y = Math.random() * (card.clientHeight - btn.offsetHeight - 100) + 60;
-          } else {
-            btn.style.position = "fixed";
-            x = Math.random() * (window.innerWidth - btn.offsetWidth - 20);
-            y = Math.random() * (window.innerHeight - btn.offsetHeight - 20);
-          }
-
-          btn.style.left = Math.max(10, x) + "px";
-          btn.style.top = Math.max(10, y) + "px";
-          btn.style.display = "block";
-          noClickCount++;
-        }, 250);
+        showFeedback({ emoji: "💔", text: "I know you love me too!", color: "#dc2626" });
       };
-
       optionsEl.appendChild(btn);
       return;
     }
