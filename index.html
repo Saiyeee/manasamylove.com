@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Quiz</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARD */
+.quiz-card {
+  background: #ffffff;
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  text-align: center;
+  position: relative;
+}
+
+/* SCORE */
+.score {
+  background: #e5e7eb;
+  padding: 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* QUESTION */
+.question {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* BUTTONS */
+.option {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  background: #f3f4f6;
+}
+
+/* Valentine buttons same width */
+.valentine-buttons .option {
+  width: 220px;
+  max-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* NO button */
+.no-btn {
+  width: 220px;
+  max-width: 220px;
+}
+
+/* SYSTEM MESSAGE */
+.system-msg {
+  background: #0f172a;
+  color: #ef4444;
+  padding: 14px;
+  border-radius: 12px;
+  margin-top: 15px;
+  display: none;
+  border: 2px solid #ef4444;
+  font-weight: 600;
+}
+
+/* FEEDBACK */
+.feedback {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  z-index: 10;
+  animation: pop 0.6s ease forwards;
+  text-align: center;
+}
+
+.feedback .emoji {
+  font-size: 80px;
+}
+
+.feedback .text {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+@keyframes pop {
+  0% { transform: translate(-50%, -50%) scale(0); }
+  70% { transform: translate(-50%, -50%) scale(1.2); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* FINAL CARD */
+.final-card {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* CONFETTI */
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  animation: fall 3s linear forwards;
+  z-index: 999;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-card">
+  <div class="score" id="score">Score: 0 / 4</div>
+  <div class="question" id="question"></div>
+  <div id="options"></div>
+
+  <div class="system-msg" id="systemMsg">
+    ❌ Invalid choice.<br>
+    System has detected you are already my Valentine.
+  </div>
+</div>
+
+<script>
+/* 🍫 CHANGE YOUR CHOCOLATE LINK HERE */
+const CHOCOLATE_LINK = "https://www.amazon.in/s?k=chocolate+gift";
+
+const questions = [
+  {
+    q: "When did I first fall for you?",
+    options: ["I don’t remember", "Jan 28", "Last year"],
+    answer: 1
+  },
+  {
+    q: "Who said I love you first?",
+    options: ["Me", "You"],
+    answer: 0
+  },
+  {
+    q: "What do I love most about you?",
+    options: ["Your smile", "Your heart", "Everything"],
+    answer: 2
+  },
+  {
+    q: "Will you be my Valentine?",
+    options: ["Yes ❤️", "No 💔"],
+    answer: 0,
+    special: true
+  }
+];
+
+let current = 0;
+let score = 0;
+let noClickCount = 0;
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const scoreEl = document.getElementById("score");
+const systemMsg = document.getElementById("systemMsg");
+
+loadQuestion();
+
+/* FEEDBACK (DYNAMIC) */
+function showFeedback(content) {
+  const feedback = document.createElement("div");
+  feedback.className = "feedback";
+
+  if (typeof content === "string") {
+    feedback.innerHTML = content;
+  } else {
+    feedback.innerHTML = `
+      <div class="emoji">${content.emoji || ""}</div>
+      <div class="text" style="color:${content.color || "#000"}">
+        ${content.text || ""}
+      </div>
+    `;
+  }
+
+  document.querySelector(".quiz-card").appendChild(feedback);
+  setTimeout(() => feedback.remove(), content.duration || 1200);
+}
+
+/* LOAD QUESTION */
+function loadQuestion() {
+  const q = questions[current];
+
+  optionsEl.classList.remove("valentine-buttons");
+  if (q.special) optionsEl.classList.add("valentine-buttons");
+
+  questionEl.innerText = q.q;
+  optionsEl.innerHTML = "";
+  systemMsg.style.display = "none";
+  scoreEl.innerText = `Score: ${score} / ${questions.length}`;
+
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.className = "option";
+    btn.innerText = opt;
+
+    /* NO BUTTON */
+    if (q.special && i !== q.answer) {
+      btn.classList.add("no-btn");
+
+      btn.onclick = () => {
+        systemMsg.style.display = "block";
+        btn.style.display = "none";
+
+        setTimeout(() => {
+          let x, y;
+
+          if (noClickCount === 0) {
+            btn.style.position = "absolute";
+            const card = document.querySelector(".quiz-card");
+            x = Math.random() * (card.clientWidth - btn.offsetWidth - 20);
+            y = Math.random() * (card.clientHeight - btn.offsetHeight - 100) + 60;
+          } else {
+            btn.style.position = "fixed";
+            x = Math.random() * (window.innerWidth - btn.offsetWidth - 20);
+            y = Math.random() * (window.innerHeight - btn.offsetHeight - 20);
+          }
+
+          btn.style.left = Math.max(10, x) + "px";
+          btn.style.top = Math.max(10, y) + "px";
+          btn.style.display = "block";
+          noClickCount++;
+        }, 250);
+      };
+
+      optionsEl.appendChild(btn);
+      return;
+    }
+
+    /* YES / NORMAL */
+    btn.onclick = () => {
+      if (q.special) {
+        score++;
+        showValentineScreen();
+        return;
+      }
+
+      if (i === q.answer) {
+        score++;
+        showFeedback({ emoji: "❤️", text: "Correct!", color: "#16a34a" });
+      } else {
+        showFeedback({ emoji: "💔", text: "Wrong!", color: "#dc2626" });
+      }
+
+      scoreEl.innerText = `Score: ${score} / ${questions.length}`;
+      current++;
+      setTimeout(loadQuestion, 1200);
+    };
+
+    optionsEl.appendChild(btn);
+  });
+}
+
+/* VALENTINE SCREEN */
+function showValentineScreen() {
+  systemMsg.style.display = "none";
+  launchConfetti();
+
+  questionEl.innerHTML = "";
+  optionsEl.innerHTML = `
+    <div class="final-card">
+      <h2>🎉 Yay! You're My Valentine! 🎉</h2>
+      <p>Thank you for making my day special! ❤️</p>
+      <br>
+      <button class="option" onclick="showChocolateScreen()">Continue 🍫</button>
+    </div>
+  `;
+}
+
+/* CHOCOLATE SCREEN */
+function showChocolateScreen() {
+  systemMsg.style.display = "none";
+  questionEl.innerHTML = "";
+  optionsEl.innerHTML = `
+    <div class="final-card">
+      <h2>🍫 A Sweet Surprise 🍫</h2>
+      <p>
+        Thank you for completing the quiz<br>
+        and being my Valentine ❤️
+      </p>
+      <br>
+      <button class="option"
+        onclick="window.open('${CHOCOLATE_LINK}', '_blank')">
+        Click here 🍫
+      </button>
+    </div>
+  `;
+}
+
+/* CONFETTI */
+function launchConfetti() {
+  for (let i = 0; i < 80; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background =
+      ["#ec4899","#22c55e","#3b82f6","#f59e0b"][Math.floor(Math.random()*4)];
+    c.style.animationDuration = (2 + Math.random() * 2) + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3000);
+  }
+}
+</script>
+
+</body>
+</html>
