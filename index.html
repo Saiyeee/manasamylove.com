@@ -176,7 +176,7 @@ body {
   padding: 14px;
   margin-bottom: 12px;
   border-radius: 12px;
-  border: 2px solid transparent;
+  border: 2px solid #e83e5c;
   cursor: pointer;
   font-size: 15px;
   background: linear-gradient(90deg, #fff5f7, #ffecf0);
@@ -192,6 +192,21 @@ body {
 
 .option:active {
   transform: scale(0.98);
+}
+
+/* Wrong / Correct visual states */
+.option.wrong {
+  background: linear-gradient(90deg,#ffdede,#ffb6c1);
+  color: #7a1220;
+  border-color: rgba(220,38,38,0.12);
+  box-shadow: 0 6px 18px rgba(220,38,38,0.06) inset;
+}
+
+.option.correct {
+  background: linear-gradient(90deg,#dcfce7,#bbf7d0);
+  color: #065f46;
+  border-color: rgba(16,185,129,0.12);
+  box-shadow: 0 6px 18px rgba(16,185,129,0.06) inset;
 }
 
 /* Valentine buttons same width */
@@ -288,10 +303,7 @@ body {
   <div class="question" id="question"></div>
   <div id="options"></div>
 
-  <div class="system-msg" id="systemMsg">
-    ❌ Invalid choice.<br>
-    System has detected you are already my Valentine.
-  </div>
+  <div class="system-msg" id="systemMsg"></div>
 </div>
 
 <script>
@@ -306,8 +318,8 @@ const TARGET_DATETIME = "2026-02-07T10:00:00";
 const questions = [
   {
     q: "When did we first see each other?",
-    options: ["I don’t remember", "Jul 2", "Jul 5", "Jul 7"],
-    answer: 1,
+    options: ["I don’t remember", "Jul 2", "Jun 30", "Jun 29"],
+    answer: 3,
     special: true
   }
   // {
@@ -451,7 +463,7 @@ function startCountdown() {
       celebrate.style.display = 'none';
       document.getElementById('quizCard').style.display = '';
       loadQuestion();
-    }, 5000);
+    }, 3000);
   }
 }
 
@@ -495,8 +507,20 @@ function loadQuestion() {
     /* NO BUTTON - show error message instead of floating away */
     if (q.special && i !== q.answer) {
       btn.onclick = () => {
+        const sysMessages = [
+          "❌ Not so fast! Try again, love.",
+          "💔 I know you love me, but choose wisely!",
+          "❌ Nope! Pick the right answer.",
+          "💕 You know the answer — try again!",
+          "❌ Close call! But not quite.",
+          "🥀 Think of our moments together...",
+          "❌ My heart says no, but try again!",
+          "💔 I see what you're doing! Pick the correct one."
+        ];
+        const msg = sysMessages[Math.floor(Math.random() * sysMessages.length)];
+        systemMsg.innerHTML = msg;
         systemMsg.style.display = "block";
-        showFeedback({ emoji: "💔", text: "I know you love me too!", color: "#dc2626" });
+        showFeedback({ emoji: "💔", text: "", color: "#dc2626" });
       };
       optionsEl.appendChild(btn);
       return;
@@ -510,16 +534,30 @@ function loadQuestion() {
         return;
       }
 
+      // correct answer -> give feedback, mark button, then advance
       if (i === q.answer) {
         score++;
-        showFeedback({ emoji: "❤️", text: "Correct!", color: "#16a34a" });
-      } else {
-        showFeedback({ emoji: "💔", text: "Wrong!", color: "#dc2626" });
+        btn.classList.add('correct');
+        showFeedback({ emoji: "❤️", text: "", color: "#16a34a" });
+        scoreEl.innerText = `Score: ${score} / ${questions.length}`;
+        current++;
+        setTimeout(loadQuestion, 900);
+        return;
       }
 
-      scoreEl.innerText = `Score: ${score} / ${questions.length}`;
-      current++;
-      setTimeout(loadQuestion, 1200);
+      // wrong answer -> show quirky messages, mark the clicked button, but DO NOT advance
+      const wrongMessages = [
+        "Not yet — try again!",
+        "Almost! Think of our moments.",
+        "Nope, but your smile wins points!",
+        "Try again, love ❤️",
+        "Close, but not quite — again!"
+      ];
+      const msg = wrongMessages[Math.floor(Math.random() * wrongMessages.length)];
+      btn.classList.add('wrong');
+      btn.disabled = true;
+      showFeedback({ emoji: "💔", text: msg, color: "#dc2626", duration: 1400 });
+      // keep staying on the same question until the correct button is clicked
     };
 
     optionsEl.appendChild(btn);
