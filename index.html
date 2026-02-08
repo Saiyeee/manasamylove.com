@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proposal Day</title>
+  <title>Chocolate Day</title>
 
 <style>
 * {
@@ -14,7 +14,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #ffd6a5 0%, #ffc857 50%, #fff9e3 100%);
+  background: linear-gradient(135deg, #f8efe6 0%, #e0c4a6 50%, #6b3f2b 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,22 +22,22 @@ body {
 
 /* COUNTDOWN SCREEN - Proposal Day theme */
 .countdown-screen {
-  background: linear-gradient(135deg, #fff9e3 0%, #ffe8b6 50%, #ffc857 100%);
-  color: #8b5a00;
+  background: linear-gradient(135deg, #fff8f0 0%, #f1ead9 50%, #e0c4a6 100%);
+  color: #4b2e20;
   width: 90%;
   max-width: 420px;
   padding: 36px 28px;
   border-radius: 18px;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(139,90,0,0.12);
-  border: 1px solid rgba(139,90,0,0.08);
+  box-shadow: 0 20px 40px rgba(75,46,32,0.12);
+  border: 1px solid rgba(75,46,32,0.06);
 }
 
 .countdown-number {
   font-size: 64px;
   font-weight: 800;
   margin: 6px 0;
-  color: #c97317;
+  color: #3b1f12;
   letter-spacing: -1px;
 }
 
@@ -48,7 +48,7 @@ body {
 }
 
 .countdown-screen:before {
-  content: "💍";
+  content: "🍫";
   display: block;
   font-size: 36px;
   margin-bottom: 8px;
@@ -67,13 +67,13 @@ body {
 }
 
 .celebrate-card {
-  background: linear-gradient(135deg,#fff9e3 0%, #ffe8b6 60%);
-  color: #8b5a00;
+  background: linear-gradient(135deg,#fff8f0 0%, #f1ead9 60%);
+  color: #4b2e20;
   padding: 36px 32px;
   border-radius: 18px;
   text-align: center;
-  box-shadow: 0 40px 80px rgba(139,90,0,0.16);
-  border: 1px solid rgba(139,90,0,0.08);
+  box-shadow: 0 40px 80px rgba(75,46,32,0.16);
+  border: 1px solid rgba(75,46,32,0.08);
   transform: translateY(0) scale(1);
   animation: celebratePop 420ms cubic-bezier(.2,.9,.3,1);
 }
@@ -89,8 +89,8 @@ body {
   font-size: 28px;
   font-weight: 800;
   margin-bottom: 12px;
-  color: #b8860b;
-  background: linear-gradient(90deg,#ff9500,#c97317 60%,#b8860b);
+  color: #4b2e20;
+  background: linear-gradient(90deg,#6b3f2b,#502d20 60%,#3b1f12);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -113,7 +113,7 @@ body {
   font-size: 28px;
   font-weight: 800;
   margin-bottom: 12px;
-  color: #8b1233;
+  color: #4b2e20;
 }
 
 .flowers {
@@ -128,34 +128,34 @@ body {
   bottom: 0;
   font-size: 30px;
   opacity: 0;
-  transform: translateY(0) scale(0.8) rotate(0deg);
-  animation: floatUp var(--dur,3s) cubic-bezier(.2,.9,.3,1) forwards;
+  transform: translateY(0) scale(0.9) rotate(0deg);
+  animation: floatUp var(--dur,4s) cubic-bezier(.2,.9,.3,1) forwards;
 }
 
 @keyframes floatUp {
-  0% { opacity: 0; transform: translateY(0) scale(0.7) rotate(0deg); }
-  20% { opacity: 1; transform: translateY(-18px) scale(1) rotate(12deg); }
-  50% { transform: translateY(-90px) scale(1.08) rotate(-18deg); }
-  100% { opacity: 0; transform: translateY(-180px) scale(1) rotate(28deg); }
+  0% { opacity: 0; transform: translateY(0) scale(0.8) rotate(0deg); }
+  18% { opacity: 1; transform: translateY(-24px) scale(1) rotate(10deg); }
+  48% { transform: translateY(-120px) scale(1.04) rotate(-20deg); }
+  100% { opacity: 0; transform: translateY(-220px) scale(1) rotate(45deg); }
 }
 
 /* CARD */
 .quiz-card {
-  background: linear-gradient(135deg, #fff9e3 0%, #ffe8b6 100%);
+  background: linear-gradient(135deg, #fff8f0 0%, #f1ead9 100%);
   width: 90%;
   max-width: 420px;
   padding: 25px;
   border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(139,90,0,0.12);
+  box-shadow: 0 20px 40px rgba(75,46,32,0.12);
   text-align: center;
   position: relative;
-  border: 1px solid rgba(139,90,0,0.08);
+  border: 1px solid rgba(75,46,32,0.06);
 }
 
 /* SCORE */
 .score {
-  background: linear-gradient(90deg, #ffc857, #ffb700);
-  color: #8b5a00;
+  background: linear-gradient(90deg, #e0c4a6, #caa57f);
+  color: #4b2e20;
   padding: 8px;
   border-radius: 10px;
   font-weight: 600;
@@ -176,18 +176,18 @@ body {
   padding: 14px;
   margin-bottom: 12px;
   border-radius: 12px;
-  border: 2px solid #ff9500;
+  border: 2px solid #6b3f2b;
   cursor: pointer;
   font-size: 15px;
-  background: linear-gradient(90deg, #fffbf0, #fff0e0);
-  color: #8b5a00;
+  background: linear-gradient(90deg, #fff8f0, #f7ead8);
+  color: #4b2e20;
   font-weight: 600;
   transition: all 200ms ease;
 }
 
 .option:hover {
-  background: linear-gradient(90deg, #ffc857, #ffb700);
-  border-color: #ff9500;
+  background: linear-gradient(90deg, #e0c4a6, #caa57f);
+  border-color: #5a3424;
 }
 
 .option:active {
@@ -271,15 +271,14 @@ body {
   top: -10px;
   width: 10px;
   height: 10px;
-  animation: fall 3s linear forwards;
+  animation: fall 4s linear forwards;
   z-index: 999;
 }
 
 @keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
+  0% { transform: translateY(-5vh) translateX(0) rotate(0deg); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateY(110vh) translateX(20vw) rotate(720deg); opacity: 0; }
 }
 </style>
 </head>
@@ -288,12 +287,12 @@ body {
 
 <div id="countdownScreen" class="countdown-screen">
   <div class="countdown-number" id="countdownNumber">5</div>
-  <div class="countdown-sub">Get ready — Proposal Day celebration begins soon</div>
+  <div class="countdown-sub">Chocolate Day begins soon — prepare a sweet surprise!</div>
 </div>
 
 <div id="celebrateScreen" class="celebrate-screen">
-  <div class="celebrate-card">
-    <div class="celebrate-message">Will you marry me, again!! 💍</div>
+    <div class="celebrate-card">
+    <div class="celebrate-message">Happy Chocolate Day — here's a sweet surprise! 🍫</div>
     <div class="flowers" id="flowers"></div>
   </div>
 </div>
@@ -308,18 +307,18 @@ body {
 
 <script>
 /* 🍫 CHANGE YOUR CHOCOLATE LINK HERE */
-const CHOCOLATE_LINK = "https://www.swiggy.com/ofo/track/D9W8SKutUhbK";
+const CHOCOLATE_LINK = "";
 
 /* TARGET DATETIME - set an ISO datetime string for when the quiz should start.
   Example: "2026-02-14T00:00:00" (UTC/Local depends on user's browser)
   Change this value to set the target date/time. */
-const TARGET_DATETIME = "2026-02-08T08:35:00";
+const TARGET_DATETIME = "2026-02-09T19:30:00";
 
 const questions = [
   {
-    q: "Where did we celebrate our first Anniversary?",
-    options: ["Chennai", "Gudapalli", "We weren't together :("],
-    answer: 1,
+    q: "Who texted first and when?",
+    options: ["Sai - July 2", "Manasa - July 1", "Sai - July 1", "Manasa - July 2"],
+    answer: 2,
     special: true
   }
   // {
@@ -438,19 +437,21 @@ function startCountdown() {
       return;
     }
     celebrate.style.display = 'flex';
-    // generate many rose/petal emojis with staggered animation delays and varied durations
+    // generate many chocolate/candy emojis with staggered animation delays and varied durations
     flowers.innerHTML = '';
-    const emojis = ['🌹','🌸','🌺','🌷','💐','🌼','🌻'];
-    const count = 24;
+    const emojis = ['🍫','🍬','🍪','🧁','🍩'];
+    const count = 30;
     for (let i = 0; i < count; i++) {
       const f = document.createElement('div');
       f.className = 'flower';
       f.style.left = (5 + Math.random()*90) + '%';
       f.style.bottom = (Math.random()*10) + 'px';
       const dur = (1.2 + Math.random()*1.6).toFixed(2);
-      f.style.setProperty('--dur', dur + 's');
+      // make some float a bit longer
+      const chosenDur = (parseFloat(dur) + Math.random()*1.2).toFixed(2);
+      f.style.setProperty('--dur', chosenDur + 's');
       f.style.animationDelay = (Math.random()*0.9) + 's';
-      f.style.fontSize = (20 + Math.random()*36) + 'px';
+      f.style.fontSize = (18 + Math.random()*42) + 'px';
       f.style.opacity = 0;
       f.innerText = emojis[Math.floor(Math.random()*emojis.length)];
       flowers.appendChild(f);
@@ -572,10 +573,10 @@ function showValentineScreen() {
   questionEl.innerHTML = "";
   optionsEl.innerHTML = `
     <div class="final-card">
-      <h2>🎉 YES! Let's Get Married! 🎉</h2>
-      <p>No matter the distance, my heart is always with you, You are my today, tommorow and my future. Will you be mine forever! ❤️</p>
+      <h2>🎉 Yay — Chocolate Time! 🎉</h2>
+      <p>Sweet treats and sweeter moments — ready for some chocolate? 🍫</p>
       <br>
-      <button class="option" onclick="showChocolateScreen()">Continue 🍫</button>
+      <button class="option" onclick="showChocolateScreen()">Get Chocolate 🍫</button>
     </div>
   `;
 }
@@ -586,15 +587,14 @@ function showChocolateScreen() {
   questionEl.innerHTML = "";
   optionsEl.innerHTML = `
     <div class="final-card">
-      <h2>💍 Our Beautiful Beginning 💍</h2>
+      <h2>🍫 Your Chocolate Treat 🍫</h2>
       <p>
-        Thank you for completing the quiz<br>
-        and being my Valentine ❤️
+        Thanks for playing — enjoy your chocolate surprise! ❤️
       </p>
       <br>
       <button class="option"
         onclick="window.open('${CHOCOLATE_LINK}', '_blank')">
-        Click here 🍫
+        Open your chocolate 🍫
       </button>
     </div>
   `;
@@ -602,13 +602,15 @@ function showChocolateScreen() {
 
 /* CONFETTI */
 function launchConfetti() {
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 120; i++) {
     const c = document.createElement("div");
     c.className = "confetti";
     c.style.left = Math.random() * 100 + "vw";
     c.style.background =
-      ["#ec4899","#22c55e","#3b82f6","#f59e0b"][Math.floor(Math.random()*4)];
-    c.style.animationDuration = (2 + Math.random() * 2) + "s";
+      ["#6b3f2b","#d4a373","#c68642","#5a341f","#a1705a"][Math.floor(Math.random()*5)];
+    c.style.animationDuration = (2 + Math.random() * 3) + "s";
+    c.style.width = (6 + Math.random()*10) + "px";
+    c.style.height = (6 + Math.random()*10) + "px";
     document.body.appendChild(c);
     setTimeout(() => c.remove(), 3000);
   }
