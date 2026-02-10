@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teddy Day</title>
+  <title>Promise Day</title>
 
 <style>
 * {
@@ -14,41 +14,41 @@
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #c2185b 100%);
+  background: linear-gradient(135deg, #e8f0ff 0%, #cfe8ff 50%, #6aa0ff 100%);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* COUNTDOWN SCREEN - Teddy Day theme */
+/* COUNTDOWN SCREEN - Promise Day theme */
 .countdown-screen {
-  background: linear-gradient(135deg, #fff0f5 0%, #fce4ec 50%, #f8bbd0 100%);
-  color: #880e4f;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 50%, #cfe8ff 100%);
+  color: #0d47a1;
   width: 90%;
   max-width: 420px;
   padding: 36px 28px;
   border-radius: 18px;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(136,14,79,0.12);
-  border: 1px solid rgba(136,14,79,0.06);
+  box-shadow: 0 20px 40px rgba(13,71,161,0.12);
+  border: 1px solid rgba(13,71,161,0.06);
 }
 
 .countdown-number {
   font-size: 64px;
   font-weight: 800;
   margin: 6px 0;
-  color: #c2185b;
+  color: #1565c0;
   letter-spacing: -1px;
 }
 
 .countdown-sub {
   font-size: 15px;
   opacity: 0.95;
-  color: #880e4f;
+  color: #0d47a1;
 }
 
 .countdown-screen:before {
-  content: "🧸";
+  content: "🤝";
   display: block;
   font-size: 36px;
   margin-bottom: 8px;
@@ -67,13 +67,13 @@ body {
 }
 
 .celebrate-card {
-  background: linear-gradient(135deg,#fff0f5 0%, #fce4ec 60%);
-  color: #880e4f;
+  background: linear-gradient(135deg,#f0f8ff 0%, #e6f3ff 60%);
+  color: #0d47a1;
   padding: 36px 32px;
   border-radius: 18px;
   text-align: center;
-  box-shadow: 0 40px 80px rgba(136,14,79,0.16);
-  border: 1px solid rgba(136,14,79,0.08);
+  box-shadow: 0 40px 80px rgba(13,71,161,0.16);
+  border: 1px solid rgba(13,71,161,0.08);
   transform: translateY(0) scale(1);
   animation: celebratePop 420ms cubic-bezier(.2,.9,.3,1);
 }
@@ -113,7 +113,7 @@ body {
   font-size: 28px;
   font-weight: 800;
   margin-bottom: 12px;
-  color: #880e4f;
+  color: #0d47a1;
 }
 
 .flowers {
@@ -141,21 +141,21 @@ body {
 
 /* CARD */
 .quiz-card {
-  background: linear-gradient(135deg, #fff0f5 0%, #fce4ec 100%);
-  width: 90%;
-  max-width: 420px;
-  padding: 25px;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(136,14,79,0.12);
-  text-align: center;
-  position: relative;
-  border: 1px solid rgba(136,14,79,0.06);
+   background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+   width: 90%;
+   max-width: 420px;
+   padding: 25px;
+   border-radius: 18px;
+   box-shadow: 0 20px 40px rgba(13,71,161,0.12);
+   text-align: center;
+   position: relative;
+   border: 1px solid rgba(13,71,161,0.06);
 }
 
 /* SCORE */
 .score {
-  background: linear-gradient(90deg, #f8bbd0, #f48fb1);
-  color: #880e4f;
+   background: linear-gradient(90deg, #90caf9, #64b5f6);
+   color: #0d47a1;
   padding: 8px;
   border-radius: 10px;
   font-weight: 600;
@@ -167,7 +167,7 @@ body {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 20px;
-  color: #c2185b;
+  color: #1565c0;
 }
 
 /* BUTTONS */
@@ -176,18 +176,18 @@ body {
   padding: 14px;
   margin-bottom: 12px;
   border-radius: 12px;
-  border: 2px solid #c2185b;
+  border: 2px solid #1565c0;
   cursor: pointer;
   font-size: 15px;
-  background: linear-gradient(90deg, #fff0f5, #fce4ec);
-  color: #880e4f;
+  background: linear-gradient(90deg, #f0f8ff, #e6f3ff);
+  color: #0d47a1;
   font-weight: 600;
   transition: all 200ms ease;
 }
 
 .option:hover {
-  background: linear-gradient(90deg, #f8bbd0, #f48fb1);
-  border-color: #ad1457;
+  background: linear-gradient(90deg, #90caf9, #64b5f6);
+  border-color: #1565c0;
 }
 
 .option:active {
@@ -287,12 +287,12 @@ body {
 
 <div id="countdownScreen" class="countdown-screen">
   <div class="countdown-number" id="countdownNumber">5</div>
-  <div class="countdown-sub">Teddy Day begins soon — get your cuddle ready! 🧸</div>
+  <div class="countdown-sub">Promise Day begins soon — a promise is on its way! 🤝</div>
 </div>
 
 <div id="celebrateScreen" class="celebrate-screen">
     <div class="celebrate-card">
-    <div class="celebrate-message">Happy Teddy Day — My sweet cuddle buddy! 🧸</div>
+    <div class="celebrate-message">Happy Promise Day — I promise to always be by your side 🤝</div>
     <div class="flowers" id="flowers"></div>
   </div>
 </div>
@@ -306,13 +306,13 @@ body {
 </div>
 
 <script>
-/* 🧸 CHANGE YOUR TEDDY LINK HERE */
-const CHOCOLATE_LINK = "https://www.swiggy.com/ofo/track/x1G2TQlcbhHa";
+/* 🤝 CHANGE YOUR PROMISE LINK HERE */
+const CHOCOLATE_LINK = "";
 
 /* TARGET DATETIME - set an ISO datetime string for when the quiz should start.
   Example: "2026-02-14T00:00:00" (UTC/Local depends on user's browser)
   Change this value to set the target date/time. */
-const TARGET_DATETIME = "2026-02-10T19:05:00";
+const TARGET_DATETIME = "2026-02-11T19:00:00";
 
 const questions = [
   {
@@ -437,9 +437,9 @@ function startCountdown() {
       return;
     }
     celebrate.style.display = 'flex';
-    // generate many teddy/love emojis with staggered animation delays and varied durations
+    // generate many promise-themed emojis with staggered animation delays and varied durations
     flowers.innerHTML = '';
-    const emojis = ['🧸','❤️','💕','🎀','⭐'];
+    const emojis = ['🤝','🤍','💫','🌟','❤️'];
     const count = 30;
     for (let i = 0; i < count; i++) {
       const f = document.createElement('div');
@@ -573,10 +573,10 @@ function showValentineScreen() {
   questionEl.innerHTML = "";
   optionsEl.innerHTML = `
     <div class="final-card">
-      <h2>🎉 Yay — Teddy Cuddle Time! 🎉</h2>
-      <p>Sweet cuddles and sweeter moments — ready for your teddy? 🧸</p>
+      <h2>🎉 Promise Kept! 🎉</h2>
+      <p>Sweet promises and lasting vows — ready to see your promise? 🤝</p>
       <br>
-      <button class="option" onclick="showChocolateScreen()">Get Your Teddy 🧸</button>
+      <button class="option" onclick="showChocolateScreen()">See the Promise 🤝</button>
     </div>
   `;
 }
@@ -587,17 +587,27 @@ function showChocolateScreen() {
   questionEl.innerHTML = "";
   optionsEl.innerHTML = `
     <div class="final-card">
-      <h2>🧸 Your Sweet Teddy 🧸</h2>
+      <h2>🤝 Your Promise 🤝</h2>
       <p>
-        Thanks for playing — enjoy your teddy surprise! ❤️
+        Thanks for playing — your promise is ready. Please wait until Feb 14th to open this surprise.
       </p>
       <br>
       <button class="option"
-        onclick="window.open('${CHOCOLATE_LINK}', '_blank')">
-        Open your teddy 🧸
+        onclick="showPromiseMessage()">
+        Please wait until Feb 14th to open this surprise
       </button>
     </div>
   `;
+}
+
+function showPromiseMessage() {
+  const msg = 'Please wait until Feb 14th to open this surprise.';
+  const sys = document.getElementById('systemMsg');
+  if (sys) {
+    sys.innerText = msg;
+    sys.style.display = 'block';
+  }
+  showFeedback({ emoji: '🤝', text: msg, color: '#1565c0', duration: 4000 });
 }
 
 /* CONFETTI */
@@ -607,7 +617,7 @@ function launchConfetti() {
     c.className = "confetti";
     c.style.left = Math.random() * 100 + "vw";
     c.style.background =
-      ["#c2185b","#f8bbd0","#f48fb1","#ad1457","#e8355c"][Math.floor(Math.random()*5)];
+      ["#1565c0","#64b5f6","#90caf9","#e3f2fd","#82b1ff"][Math.floor(Math.random()*5)];
     c.style.animationDuration = (2 + Math.random() * 3) + "s";
     c.style.width = (6 + Math.random()*10) + "px";
     c.style.height = (6 + Math.random()*10) + "px";
