@@ -594,7 +594,7 @@ function showChocolateScreen() {
       <br>
       <button class="option"
         onclick="showPromiseMessage()">
-        Please wait until Feb 14th to open this surprise
+        Open Promise 🤝
       </button>
     </div>
   `;
@@ -607,7 +607,7 @@ function showPromiseMessage() {
     sys.innerText = msg;
     sys.style.display = 'block';
   }
-  showFeedback({ emoji: '🤝', text: msg, color: '#1565c0', duration: 4000 });
+  showFeedback({ emoji: '🤝', text: "", color: '#1565c0', duration: 4000 });
 }
 
 /* CONFETTI */
